@@ -1,8 +1,6 @@
 <?php
 namespace GraphQL\Language\AST;
 
-use GraphQL\Utils;
-
 abstract class Node
 {
     // constants from language/kinds.js:
@@ -82,9 +80,20 @@ abstract class Node
     /**
      * @param array $vars
      */
-    public function __construct(array $vars)
+    public function __construct(array $vars = [])
     {
-        Utils::assign($this, $vars);
+        $this->assign($vars);
+    }
+
+    private function assign(array $vars = [])
+    {
+        foreach ($vars as $key => $value) {
+            if (!property_exists($this, $key)) {
+                $cls = get_class($this);
+                throw new \InvalidArgumentException("Trying to set non-existing property '$key' on class '$cls'");
+            }
+            $this->{$key} = $value;
+        }
     }
 
     public function cloneDeep()
