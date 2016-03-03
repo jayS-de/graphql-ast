@@ -1,0 +1,17 @@
+{
+  "name": "jays-de/graphql-ast",
+  "type": "library",
+  "license": "BSD",
+  "homepage": "https://github.com/jayS-de/graphql-ast",
+  "description": "The graphql AST",
+  "keywords": ["graphql"],
+  "support": {
+    "issues": "https://github.com/jays-de/graphql-ast/issues"
+  },
+  "require": {
+    "php": ">=5.5",
+  },
+  "autoload": {
+    "psr-4": { "GraphQL\\Language\\AST\\": "src/" }
+  }
+}
